@@ -10,7 +10,7 @@ const getters = {
 
 const mutations = {
   setSelectedTool (state, payload) { state.selectedTool = payload.tool },
-  setSelectedColor (state, payload) { state.selectedTool = payload.color },
+  setSelectedColor (state, payload) { state.selectedColor = payload.color },
 }
 
 const actions = {}
