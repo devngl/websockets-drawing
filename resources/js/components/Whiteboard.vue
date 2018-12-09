@@ -1,5 +1,5 @@
 <template>
-    <div id="drawing" class="rounded">
+    <div id="drawing" class="rounded h-100">
     </div>
 </template>
 
