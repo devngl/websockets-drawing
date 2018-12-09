@@ -1,23 +1,23 @@
 <template>
-    <div class="d-flex">
+    <div class="d-flex flex-column">
         <div class="btn-group-vertical">
             <button type="button"
                     :class="{'btn-success': selectedTool === 'pencil'}"
                     class="btn btn-sm btn-primary"
                     @click="enableTool('pencil')">
-                Pencil
+                <i class="ti ti-pencil-alt2"></i>
             </button>
             <button type="button"
                     :class="{'btn-success': selectedTool === 'brush'}"
                     class="btn btn-sm btn-primary"
                     @click="enableTool('brush')">
-                Brush
+                <i class="ti ti-brush-alt"></i>
             </button>
             <button type="button"
                     :class="{'btn-success': selectedTool === 'eraser'}"
                     class="btn btn-sm btn-primary"
                     @click="enableTool('eraser')">
-                Eraser
+                <i class="ti ti-eraser"></i>
             </button>
         </div>
     </div>
