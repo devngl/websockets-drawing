@@ -6,6 +6,7 @@
 <script>
   import SVG from 'svg.js'
   import { mapGetters } from 'vuex'
+  import axios from 'axios'
 
   export default {
     name: 'whiteboard',
@@ -21,20 +22,28 @@
       ...mapGetters('Drawing', [
         'getSelectedTool',
         'getSelectedColor',
-      ])
+      ]),
     },
+
     mounted () {
       this.draw = SVG('drawing').size('100%', '100%')
+
+      const room = (new URL(window.location.href)).searchParams.get('room')
+      window.Echo.join(`room.${room}`).listen('DrawCompleted', (e) => {
+        const {color, width, path} = e.shape
+        const polyline = this.draw.polyline(path)
+        this.stylePolyline(polyline, color, width)
+      })
+
       this.draw.on('mousedown', () => {
         this.draw.on('mousemove', (e) => {
           const width = this.getSelectedTool === 'pencil' ? 1 : 8
           const color = this.getSelectedTool === 'eraser' ? '#FFF' : this.getSelectedColor
 
           this.drawingPath.push([e.offsetX, e.offsetY])
-          if(this.polyline) this.polyline.remove()
+          if (this.polyline) this.polyline.remove()
           this.polyline = this.draw.polyline(this.drawingPath)
-          this.polyline.fill('none')
-          this.polyline.stroke({ color, width, linecap: 'round', linejoin: 'round' })
+          this.stylePolyline(this.polyline, color, width)
 
           // Here we will emit the partial draw
         })
@@ -43,11 +52,23 @@
       this.draw.on('mouseup', (e) => {
         this.draw.off('mousemove')
 
-        // Here we will emit the definitive polyline
+        // Here we emit the definitive polyline
+        axios.post(`/api/rooms/${room}/lines`, {
+          color: this.getSelectedTool === 'eraser' ? '#FFF' : this.getSelectedColor,
+          width: this.getSelectedTool === 'pencil' ? 1 : 8,
+          path: [...this.drawingPath],
+        })
 
-        this.polyline = null;
+        this.polyline = null
         this.drawingPath = []
       })
+    },
+
+    methods: {
+      stylePolyline (polyline, color, width) {
+        polyline.fill('none')
+        polyline.stroke({color, width, linecap: 'round', linejoin: 'round'})
+      },
     },
   }
 </script>

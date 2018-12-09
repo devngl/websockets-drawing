@@ -12,5 +12,6 @@
 */
 
 Auth::routes();
+Broadcast::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
