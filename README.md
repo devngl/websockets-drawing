@@ -2,7 +2,7 @@
 
 The purpose of this project is to test the [Websockets for Laravel](https://github.com/beyondcode/laravel-websockets) package developed by Marcel Pociot & Freek Van der Herten as replacement for services like Pusher. 
 
-![Demo](https://github.com/devngl/websockets-drawing/tree/master/resources/images/demo.gif "Demo")
+![Demo](https://raw.githubusercontent.com/devngl/websockets-drawing/master/resources/images/demo.gif "Demo")
 
 ## Usage
 
