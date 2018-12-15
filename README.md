@@ -2,6 +2,8 @@
 
 The purpose of this project is to test the [Websockets for Laravel](https://github.com/beyondcode/laravel-websockets) package developed by Marcel Pociot & Freek Van der Herten as replacement for services like Pusher. 
 
+![Demo](https://github.com/devngl/websockets-drawing/tree/master/resources/images/demo.gif "Demo")
+
 ## Usage
 
 1. Clone the repository
@@ -17,7 +19,7 @@ The purpose of this project is to test the [Websockets for Laravel](https://gith
 
 ## How does it work?
 
-Create an account (localhost:8000/register) and go to the main page. Open the same page in multiple browser windows and whatever is draw in the whiteboard should be replicated on every other window. 
+Create an account (localhost:8000/register) and go to the main page (an account is needed only because whispers and private channels require being authenticated). Open the same page in multiple browser windows and whatever is draw in the whiteboard should be replicated on every other window. 
 
 It is also possible to create a room, which consist of a random string combination to create a kind of private broadcasting scope that doesn't affect other rooms.
 
